@@ -1,6 +1,6 @@
 # YouTube MCP Server
 
-A Model Context Protocol (MCP) server that enables Claude Desktop to interact with YouTube, providing search and transcript functionality.
+A Model Context Protocol (MCP) server that enables Claude Desktop (and other applications) to interact with YouTube, providing search and transcript functionality.
 
 ## Features
 
@@ -11,6 +11,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 ## Tools Available
 
 ### 1. `search_youtube_videos`
+
 - **Purpose**: Search YouTube for videos based on a query
 - **Parameters**:
   - `search_term` (string): The search query
@@ -18,12 +19,14 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 - **Returns**: List of video information including titles, channels, descriptions, URLs, and metadata
 
 ### 2. `get_youtube_transcript`
+
 - **Purpose**: Extract transcript from a YouTube video
 - **Parameters**:
   - `video_url_or_title` (string): YouTube video URL or video ID
 - **Returns**: Full transcript with timestamps and metadata
 
 ### 3. `analyze_youtube_content_prompt`
+
 - **Purpose**: AI prompt template for comprehensive YouTube content analysis
 - **Parameters**:
   - `search_term` (string): Topic to analyze
@@ -32,6 +35,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 ## Setup
 
 ### 1. Install Dependencies
+
 ```bash
 # Create virtual environment
 python3 -m venv .venv
@@ -44,6 +48,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Get YouTube API Key
+
 1. Go to [Google Cloud Console](https://console.developers.google.com/)
 2. Create a new project or select existing one
 3. Enable YouTube Data API v3
@@ -51,6 +56,7 @@ pip install -r requirements.txt
 5. Copy the API key
 
 ### 3. Configure Environment
+
 ```bash
 # Copy example environment file
 cp .env.example .env
@@ -60,6 +66,7 @@ YOUTUBE_API_KEY=your_actual_api_key_here
 ```
 
 ### 4. Test the Server
+
 ```bash
 # Activate virtual environment
 source .venv/bin/activate
@@ -75,13 +82,17 @@ Add this configuration to your Claude Desktop MCP settings:
 ```json
 {
   "mcpServers": {
-    "youtube": {
-      "command": "python",
-      "args": ["/path/to/your/youtube-mcp/youtube_server.py"],
-      "env": {
-        "YOUTUBE_API_KEY": "your_youtube_api_key_here"
-      }
-    }
+        "youtube": {
+            "command": "local/path/to/uv",
+            "args": [
+                "run",
+                "--directory",
+                "/Path/to/your/project",
+                "youtube_server.py"
+            ],
+            "env": {
+                "YOUTUBE_API_KEY": "your_key_here"
+            }
   }
 }
 ```
