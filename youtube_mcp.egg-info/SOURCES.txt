@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+youtube_server.py
+youtube_mcp.egg-info/PKG-INFO
+youtube_mcp.egg-info/SOURCES.txt
+youtube_mcp.egg-info/dependency_links.txt
+youtube_mcp.egg-info/requires.txt
+youtube_mcp.egg-info/top_level.txt

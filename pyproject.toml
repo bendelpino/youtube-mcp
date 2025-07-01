@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "youtube-mcp"
+version = "0.1.0"
+description = "YouTube MCP server for searching videos and getting transcripts"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp==0.2.0",
+    "google-api-python-client==2.108.0",
+    "youtube-transcript-api==1.1.0"
+]
+
+[tool.windsurf.mcp]
+name = "youtube"
+description = "YouTube MCP server for searching videos and getting transcripts"
+
+[tool.windsurf.mcp.runtime]
+type = "python"
+module = "youtube_server"
+entry = "mcp"
+
+[tool.windsurf.mcp.tool.search_youtube_videos]
+description = "Search YouTube videos based on a search term"
+suggested_user_message = "Search YouTube for videos about {{search_term}}"
+
+[tool.windsurf.mcp.tool.get_youtube_transcript]
+description = "Get the transcript of a YouTube video"
+suggested_user_message = "Get the transcript for this YouTube video: {{video_url_or_title}}"

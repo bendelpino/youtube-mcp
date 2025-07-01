@@ -1,0 +1,8 @@
+Metadata-Version: 2.4
+Name: youtube-mcp
+Version: 0.1.0
+Summary: YouTube MCP server for searching videos and getting transcripts
+Requires-Python: >=3.10
+Requires-Dist: fastmcp==0.2.0
+Requires-Dist: google-api-python-client==2.108.0
+Requires-Dist: youtube-transcript-api==1.1.0
