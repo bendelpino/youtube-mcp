@@ -140,35 +140,20 @@ def get_youtube_transcript(video_url_or_title: str) -> Dict[str, Any]:
         except Exception as e:
             return {"error": f"Could not find transcript for video ID: {video_id}. Error: {str(e)}"}
         
-        # Format transcript
-        full_transcript = []
-        transcript_text = ""
+        # Create a simple text-only transcript
+        full_text = ""
         
         for entry in transcript_data:
-            timestamp = entry['start']
-            duration = entry['duration']
             text = entry['text']
-            
-            # Format timestamp as MM:SS
-            minutes = int(timestamp // 60)
-            seconds = int(timestamp % 60)
-            time_formatted = f"{minutes:02d}:{seconds:02d}"
-            
-            full_transcript.append({
-                'timestamp': time_formatted,
-                'start_seconds': timestamp,
-                'duration': duration,
-                'text': text
-            })
-            
-            transcript_text += f"[{time_formatted}] {text}\n"
+            full_text += text + " "
+        
+        # Remove any extra spaces and clean up the text
+        full_text = full_text.replace("\n", " ").strip()
+        while "  " in full_text:
+            full_text = full_text.replace("  ", " ")
         
         return {
-            'video_id': video_id,
-            'video_url': f"https://www.youtube.com/watch?v={video_id}",
-            'transcript_entries': full_transcript,
-            'full_transcript': transcript_text,
-            'total_entries': len(full_transcript)
+            'transcript': full_text
         }
         
     except Exception as e:
